@@ -7,96 +7,93 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-
-      // TODO: Include the rest of the fields of the Restaurants table
       restaurantCategoryId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: {
-            tableName: 'RestaurantCategories'
-          },
+          model: 'RestaurantCategories',
+          key: 'id'
+        }
+      },
+      UserId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onDelete: 'CASCADE', 
+        references: {
+          model: 'Users',
           key: 'id'
         }
       },
 
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
 
       description: {
-        type: Sequelize.TEXT
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-
+      
       address: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-
       postalCode: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-
       url: {
-        type: Sequelize.STRING
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-
       shippingCosts: {
         allowNull: false,
-        type: Sequelize.DOUBLE 
+        type: Sequelize.DOUBLE,
       },
-
       averageServiceMinutes: {
-        type: Sequelize.DOUBLE 
+        allowNull: true,
+        type: Sequelize.DOUBLE,
       },
-
       email: {
-        type: Sequelize.STRING 
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-
       phone: {
-        type: Sequelize.STRING 
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-
       logo: {
-        type: Sequelize.STRING 
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-
       heroImage: {
-        type: Sequelize.STRING 
+        allowNull: true,
+        type: Sequelize.STRING,
       },
-
       status: {
+        allowNull: true,
         type: Sequelize.ENUM,
-        values:['online', 'offline', 'closed', 'temporarily closed'] 
+        values: [
+          'online',
+          'offline',
+          'closed',
+          'temporarily closed'
+        ],
       },
-
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'User'
-          },
-          key: 'id'
-        }
-      },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       },
-      
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date()
       }
-    })
+    });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Restaurants')
+  down: async (queryInterface, _Sequelize) => {
+    await queryInterface.dropTable('Restaurants');
   }
-}
-
+};
