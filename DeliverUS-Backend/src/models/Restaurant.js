@@ -28,6 +28,93 @@ const loadModel = (sequelize, DataTypes) => {
   }
   Restaurant.init({
     // TODO: Include the rest of the properties of the Restaurant model
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    restaurantCategoryId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'RestaurantCategories',
+        key: 'id'
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE', 
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    description: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    postalCode: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    url: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    shippingCosts: {
+      allowNull: false,
+      type: DataTypes.DOUBLE,
+    },
+    averageServiceMinutes: {
+      allowNull: true,
+      type: DataTypes.DOUBLE,
+    },
+    email: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    phone: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    logo: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    heroImage: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    status: {
+      allowNull: true,
+      type: DataTypes.ENUM,
+      values: [
+        'online',
+        'offline',
+        'closed',
+        'temporarily closed'
+      ],
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: new Date()
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: new Date()
+    }
 
   }, {
     sequelize,
@@ -35,4 +122,5 @@ const loadModel = (sequelize, DataTypes) => {
   })
   return Restaurant
 }
+
 export default loadModel

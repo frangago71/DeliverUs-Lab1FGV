@@ -25,6 +25,8 @@ const initializeServer = async (enableConsoleLog = false) => {
   }
 }
 
+
+
 const initializeDatabase = async () => {
   let connection
   try {

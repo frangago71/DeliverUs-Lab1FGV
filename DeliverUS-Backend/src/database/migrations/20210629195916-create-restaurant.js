@@ -24,17 +24,14 @@ module.exports = {
           key: 'id'
         }
       },
-
       name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-
       description: {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      
       address: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -93,7 +90,7 @@ module.exports = {
       }
     });
   },
-  down: async (queryInterface, _Sequelize) => {
+  down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Restaurants');
   }
 };
