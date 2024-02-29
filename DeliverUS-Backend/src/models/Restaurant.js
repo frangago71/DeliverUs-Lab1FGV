@@ -35,7 +35,7 @@ const loadModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     restaurantCategoryId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'RestaurantCategories',
